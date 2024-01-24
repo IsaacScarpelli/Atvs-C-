@@ -1,1 +1,104 @@
+using System;
+namespace teste
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
 
+            Produtos p = new Produtos();
+            int loop = 1;
+            int qtd;
+            Console.WriteLine("Insira os dados do produto que  você deseja adicionar ao carrinho ?");
+            Console.Write("Nome : ");
+            p.Nome = Console.ReadLine();
+            Console.Write("Preço : ");
+            p.Preco = double.Parse(Console.ReadLine());
+            Console.Write("Quantidade : ");
+            p.Quantidade = int.Parse(Console.ReadLine());
+            Console.WriteLine("Você deseja gerenciar o seu carrinho? (Digite 1 para Sim, Digite 2 para Não)" );
+            int escolha = int.Parse(Console.ReadLine());
+            Console.Clear();
+            if (escolha == 1 )
+            {
+                while (loop == 1)
+                {
+                    Console.WriteLine("Digite o número da opção que você deseja escolher ?");
+                    Console.WriteLine("Ver valor total do carrinho - 1");
+                    Console.WriteLine("Inserir produtos no carrinho - 2");
+                    Console.WriteLine("Remover produtos do carrinho - 3");
+                    int opcao = int.Parse(Console.ReadLine());
+                    switch (opcao)
+                    {
+                        case 1:
+                            Console.WriteLine(p);
+                            Console.WriteLine("");
+                            Console.WriteLine("Você deseja continuar a gerenciar o carrinho ? (Digite 1 para Sim, Digite 2 para Não)");
+                            loop = int.Parse(Console.ReadLine());
+                            Console.Clear();
+                            break;
+
+                        case 2:
+                            Console.WriteLine("Digite a quantidade de produtos á ser inserida :");
+                            qtd = int.Parse(Console.ReadLine());
+                            p.AdicionarProdutos(qtd);
+                            Console.WriteLine($"Quantidade de produtos atualizada : {p.Quantidade}");
+                            Console.WriteLine("");
+                            Console.WriteLine("Você deseja continuar a gerenciar o carrinho ? (Digite 1 para Sim, Digite 2 para Não)");
+                            loop = int.Parse(Console.ReadLine());
+                            Console.Clear();
+                            break;
+
+                        case 3:
+                            Console.WriteLine("Digite a quantidade de produtos á ser removida :");
+                            qtd = int.Parse(Console.ReadLine());
+                            p.RemoverProdutos(qtd);
+                            Console.WriteLine($"Quantidade de produtos atualizada : {p.Quantidade}");
+                            Console.WriteLine("");
+                            Console.WriteLine("Você deseja continuar a gerenciar o carrinho ? (Digite 1 para Sim, Digite 2 para Não)");
+                            loop = int.Parse(Console.ReadLine());
+                            Console.Clear();
+                            break;
+
+
+                    }
+                }
+            }
+
+        }    
+
+
+
+public class Produtos
+{
+	public string Nome;
+	public double Preco;
+	public int Quantidade;
+
+	public double ValorTotalCarrinho()
+	{
+		return Preco * Quantidade;
+	}
+
+	public void AdicionarProdutos(int quantidade)
+	{
+		Quantidade += quantidade;
+	}
+
+	public void RemoverProdutos(int quantidade)
+	{
+		Quantidade -= quantidade;
+	}
+
+	public override string ToString()
+	{
+		return Nome
+			+ ",preço individual R$"
+			+ Preco
+			+ ", "
+			+ "quantidade de produtos totais "
+			+ Quantidade
+			+", preço total R$"
+			+ValorTotalCarrinho();
+	}
+}
