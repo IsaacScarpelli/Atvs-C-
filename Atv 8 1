@@ -1,0 +1,124 @@
+sing System;
+using System.Globalization;
+
+namespace Atvs
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            
+            Console.WriteLine("Insira seu nome :");
+            string nome = Console.ReadLine();
+            Console.WriteLine("Insira sua idade :");
+            int idade = int.Parse(Console.ReadLine());
+            Pessoa p = new Pessoa(nome, idade);
+            p.verCarteira();
+
+            while (true)
+            {
+                Console.WriteLine("O que você deseja fazer ? (Insira o número da atividade)");
+                Console.WriteLine("Trabalhar - 1");
+                Console.WriteLine("Fazer Compras - 2");
+                Console.WriteLine("Investir - 3");
+                Console.WriteLine("Ver seu saldo da carteira - 4");
+                int opcao = int.Parse(Console.ReadLine());
+                switch(opcao)
+                {
+                    case 1:
+                        p.trabalhar();
+                        break;
+
+                        case 2:
+                        Console.WriteLine("Aonde você deseja ir ? (Insira o número do local)");
+                        Console.WriteLine("Shopping - 1");
+                        Console.WriteLine("Mercado - 2");
+                        Console.WriteLine("Padaria - 3");
+                        Console.WriteLine("Barbeiro - 4");
+                        int escolha = int.Parse(Console.ReadLine());
+                        p.fazerCompras(escolha);
+                        break;
+
+
+                        case 3:
+                        p.investir();
+                        break;
+
+                        case 4:
+                        p.verCarteira();
+                        break;
+                }
+                
+            }
+        }
+    }
+}
+
+
+
+
+using System;
+using System.Security.Cryptography.X509Certificates;
+
+public class Pessoa
+{
+    private string nome;
+    private int idade;
+    private double carteira;
+   
+    
+    public Pessoa(string nome, int idade)
+    {
+        this.nome = nome;
+        this.idade = idade;
+        this.carteira = 0;
+    }
+
+    public void trabalhar()
+    {
+        carteira += 1000;
+        Console.WriteLine("Saldo recebido!");
+    }
+
+    public void fazerCompras(int local)
+    {
+        if(local == 1)
+        {
+            Console.WriteLine("Compras no shopping realizadas!");
+            carteira -= 300;
+        }
+        else if(local == 2)
+        {
+            Console.WriteLine("Compras no mercaado realizadas!");
+            carteira -= 400;
+        }
+        else if(local == 3)
+        {
+            Console.WriteLine("Compras na padaria realizadas!");
+            carteira -= 50;
+        }
+        else if(local == 4)
+        {
+            Console.WriteLine("Régua lançada!");
+            carteira -= 50;
+        }
+    }
+
+
+
+    public void investir()
+    {
+        double investimento = carteira * 0.3;
+        carteira =+ investimento;
+        Console.WriteLine("Investimentos realizados");
+    }
+
+
+    public void verCarteira()
+    {
+        Console.WriteLine($"{nome}, seu saldo atual é de : R${carteira}");
+    }
+}
+
+
+
