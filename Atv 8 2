@@ -1,0 +1,164 @@
+using System;
+using System.Globalization;
+
+namespace Atvs
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int partida = 1;
+            
+            Console.WriteLine("===================================================================");
+            Console.WriteLine("Jokenpo do Isaac");
+            Console.WriteLine("===================================================================");
+            Console.WriteLine("");
+
+            Console.WriteLine("Insira seu nome :");
+            string nome = Console.ReadLine();
+            Jokempo jogador = new Jokempo(nome);
+
+            while (partida == 1)
+            {
+                Console.WriteLine("Insira o número referente a sua jogada");
+                Console.WriteLine("Tesoura - 1");
+                Console.WriteLine("Papel - 2");
+                Console.WriteLine("Pedra - 3");
+                int jogada = int.Parse(Console.ReadLine());
+                jogador.jogada_P1(jogada);
+                jogador.jogada_maquina(); 
+                Console.Clear();              
+                jogador.condicaoVitoria();
+                Console.WriteLine("===================================================================");
+                Console.WriteLine("");
+                Console.WriteLine("Você deseja outra rodada? Digite 1 para sim, e 2 para não.");
+                partida = int.Parse(Console.ReadLine());
+            }
+            
+        }
+       
+    }
+}
+
+
+
+using System;
+using System.Runtime.InteropServices;
+using System.Security.Cryptography.X509Certificates;
+
+public class Jokempo
+{
+
+    private string jogada_player1;
+    private string jogada_player2;
+    private string jogador1;
+    private string jogador2;
+
+    public Jokempo(string jogador1)
+    {
+        this.jogador1 = jogador1;
+        this.jogador2 = "Computador";
+    }
+
+    public void jogada_P1(int jogada)
+    {
+        if(jogada == 1)
+        {
+             jogada_player1 = "Tesoura";
+        }
+        else if(jogada == 2)
+        {
+             jogada_player1 = "Papel";
+        }
+        else if (jogada == 3)
+        {
+             jogada_player1 = "Pedra";
+        }
+        else
+        {
+            Console.WriteLine("Insira um número válido");
+        }
+    }
+
+    
+
+    public void jogada_maquina()
+    {
+        System.Random rnd = new System.Random();
+        
+        int jogada_maquina = rnd.Next(1, 4);
+
+
+        if (jogada_maquina == 1)
+        {
+             jogada_player2 = "Tesoura";
+        }
+        else if (jogada_maquina == 2)
+        {
+             jogada_player2 = "Papel";
+        }
+        else if (jogada_maquina == 3)
+        {
+             jogada_player2 = "Pedra";
+        }
+    }
+
+    public void condicaoVitoria()
+    {
+        if (jogada_player1 == "Pedra" && jogada_player2 == "Tesoura")
+        {
+            Console.WriteLine("A máquina escolheu Tesoura");
+            Console.WriteLine($"Pedra vence Tesoura, {jogador1} venceu.");
+            
+        }
+
+        else if (jogada_player1 == "Papel" && jogada_player2 == "Pedra")
+        {
+            Console.WriteLine("A máquina escolheu Pedra");
+            Console.WriteLine($"Papel vence Pedra, {jogador1} venceu.");
+
+        }
+
+        else if (jogada_player1 == "Tesoura" && jogada_player2 == "Papel")
+        {
+            Console.WriteLine("A máquina escolheu Papel");
+            Console.WriteLine($"Tesoura vence Papel, {jogador1} venceu.");
+
+        }
+
+        else if (jogada_player2 == "Pedra" && jogada_player1 == "Tesoura")
+        {
+            Console.WriteLine("A máquina escolheu Pedra");
+            Console.WriteLine($"Pedra vence Tesoura, a máquina  venceu.");
+
+        }
+
+        else if (jogada_player2 == "Papel" && jogada_player1 == "Pedra")
+        {
+            Console.WriteLine("A máquina escolheu Pedra");
+            Console.WriteLine($"Papel vence Pedra, a máquina  venceu.");
+
+        }
+
+        else if (jogada_player2 == "Tesoura" && jogada_player1 == "Papel")
+        {
+            Console.WriteLine("A máquina escolheu Tesoura");
+            Console.WriteLine($"Tesoura vence Papel, a máquina  venceu.");
+
+        }
+
+        else
+        {
+            Console.WriteLine("Erro ou Empate, tente novamente.");
+            
+        }
+    }
+}
+
+class Random
+{
+    Random rnd = new Random();
+}
+
+
+
