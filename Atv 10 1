@@ -1,0 +1,78 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace teste
+{
+    public class Program
+    {
+        static void Main(string[] args)
+        {
+            int numQuarto;
+            
+            Quartos[] quartos = new Quartos[9];
+            Quartos[] copia = new Quartos[quartos.Length];
+            while (true)
+            {
+                Console.WriteLine("Insira o número da ação que você deseja realizar : ");
+                Console.WriteLine("Alugar quarto - 1");
+                Console.WriteLine("Ver quais quartos estão alugados - 2");
+                int escolha = int.Parse(Console.ReadLine());
+                switch (escolha)
+                {
+                    case 1:
+                        Console.WriteLine("Qual quarto você deseja alugar ? (escolha de 0 a 9!)");
+                        numQuarto = int.Parse(Console.ReadLine());
+                        if (quartos[numQuarto] == null)
+                        {
+                            quartos[numQuarto] = new Quartos();
+                            Console.WriteLine("Insira seu nome : ");
+                            quartos[numQuarto].Nome = Console.ReadLine();
+                            Console.WriteLine("Insira seu email : ");
+                            quartos[numQuarto].Email = Console.ReadLine();
+                            quartos[numQuarto].NumQuarto = numQuarto;
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Insira um quarto vazio!");
+                        }
+                        Console.ReadKey();
+                        Console.Clear();
+                        break;
+
+                    
+                    case 2:
+                        quartos.ToList().ForEach(Console.WriteLine);
+
+                        Console.ReadKey();
+                        Console.Clear();
+                        break;
+                }
+
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+using System;
+using System.Collections.Generic;
+
+public class Quartos
+{
+	public string Nome;
+	public string Email;
+    public int NumQuarto;
+
+    public override string ToString()
+    {
+        return NumQuarto + ": " + Nome + ", " + Email;
+    }
+}
