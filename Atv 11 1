@@ -1,0 +1,87 @@
+using System;
+using System.Globalization;
+
+namespace Atvs
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Insira quantos funcionários você irá adicionar ?");
+            int n = int.Parse(Console.ReadLine());
+            List<Funcionarios> list = new List<Funcionarios>();
+            for(int i = 0; i < n; i++)
+            {
+                Console.WriteLine($"Insira os dados do {i+1}º Funcionário :");
+                Console.Write("Id :");
+                int id = int.Parse(Console.ReadLine());
+                Console.Write("Nome :");
+                string nome = Console.ReadLine();
+                Console.Write("Salário :");
+                double salario = double.Parse(Console.ReadLine());
+                list.Add(new Funcionarios(id, nome, salario));
+                Console.WriteLine();
+            }
+
+            Console.WriteLine("Insira o id do funcionário que irá receber um aumento :");   
+            int procuraid = int.Parse(Console.ReadLine());
+            Funcionarios emp = list.Find(x => x.Id == procuraid);
+
+            if(emp != null)
+            {
+                Console.WriteLine("Insira a porcentagem que irá aumentar :");
+                double porcentagem = double.Parse(Console.ReadLine());
+                emp.Aumento(porcentagem);
+            }
+            else 
+            { 
+                Console.WriteLine("Insira um Id válido"); 
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("Lista dos fincionários atualizada :");
+            foreach(Funcionarios obj in list)
+            {
+                Console.WriteLine(obj);
+            }
+
+        }   
+    }
+}
+
+using System;
+using System.Runtime.InteropServices;
+using System.Security.Cryptography.X509Certificates;
+
+public class Funcionarios
+{
+    public int Id;
+    public string Nome;
+    public double Salario;
+
+    public Funcionarios(int id, string nome, double salario)
+    {
+        this.Id = id;
+        this.Nome = nome;
+        this.Salario = salario;
+    }
+
+    public void Aumento(double porcentagem)
+    {
+        Salario += Salario * porcentagem / 100;
+    }
+
+    public override string ToString()
+    {
+        return Id +
+            " ," +
+            Nome +
+            " ," +
+            Salario;
+    }
+}
+
+
+
+
+
