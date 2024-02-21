@@ -65,7 +65,7 @@ namespace teste
                 Console.WriteLine("Insira o número da ação que você deseja realizar");
                 Console.WriteLine("Depósito - 1");
                 Console.WriteLine("Saque - 2");
-                Console.WriteLine("Depósito - 1");
+                Console.WriteLine("Empréstimo - 1");
             }
         }
     }
