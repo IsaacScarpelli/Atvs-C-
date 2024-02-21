@@ -75,4 +75,73 @@ namespace teste
 
 
 
+using System;
+using System.Drawing;
+using System.Runtime.InteropServices;
+using System.Security.Cryptography.X509Certificates;
+
+public class Conta
+{
+    public int Id;
+    public double Carteira { get; protected set; }
+    public double Divida { get; protected set; }
+
+    public Conta(int id, double carteira)
+    {
+        this.Id = id;
+        this.Carteira = carteira;
+        this.Divida = 0;
+    }
+
+    public void Deposito(double valor)
+    {
+        Carteira += valor;
+        Console.WriteLine($"Depósito de R${valor} realizado!");
+    }
+
+    public void Saque(double valor)
+    {
+        Carteira -= valor;
+        Console.WriteLine($"Saque de R${valor} realizado!");
+    }
+}
+
+public class ContaSilver : Conta
+{
+    public double LimiteEmprestimo;
+
+    public ContaSilver(int id, double carteira)
+        :base(id,carteira)  
+    {
+        LimiteEmprestimo = 1000;
+
+    }
+
+    public void Emprestimo(double valor)
+    {
+        Carteira += valor;
+        Divida = Divida + valor + (valor * 0.1);
+        Console.WriteLine("Empréstimo realizado!");
+    }
+}
+
+public class ContaGold : ContaSilver
+{
+    public double LimiteEmprestimo;
+
+    public ContaGold(int id, double carteira)
+        : base(id, carteira)
+    {
+        LimiteEmprestimo = 5000;
+
+    }
+
+}
+
+
+
+
+
+
+
 
