@@ -1,0 +1,78 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace teste
+{
+    public class Program
+    {
+        static void Main(string[] args)
+        {
+            int id;
+            int escolha;
+            double carteira;
+            Console.WriteLine("Insira o número referente ao seu plano do banco");
+            Console.WriteLine("Bronze - 1");
+            Console.WriteLine("Silver - 2");
+            Console.WriteLine("Gold - 3");
+            escolha = int.Parse(Console.ReadLine());
+            switch (escolha)
+            {
+                case 1:
+                    Console.WriteLine("Insira o Id da sua conta :");
+                    id = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Você deseja realizar um deposito inicial ? (Digite 1 para sim/ Digite 2 para não)");
+                    escolha = int.Parse(Console.ReadLine());
+                    if (escolha == 1)
+                    {
+                        Console.WriteLine("Insira o valor do deposito inicial : ");
+                        carteira = double.Parse(Console.ReadLine());
+                    }
+                    else { carteira = 0; }
+                    Conta conta = new Conta(id, carteira);
+                    break;
+
+                    case 2:
+                    Console.WriteLine("Insira o Id da sua conta :");
+                    id = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Você deseja realizar um deposito inicial ? (Digite 1 para sim/ Digite 2 para não)");
+                    escolha = int.Parse(Console.ReadLine());
+                    if (escolha == 1)
+                    {
+                        Console.WriteLine("Insira o valor do deposito inicial : ");
+                        carteira = double.Parse(Console.ReadLine());
+                    }
+                    else { carteira = 0; }
+                    ContaSilver contaSilver = new ContaSilver(id, carteira);
+                    break;
+
+                    case 3:
+                    Console.WriteLine("Insira o Id da sua conta :");
+                    id = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Você deseja realizar um deposito inicial ? (Digite 1 para sim/ Digite 2 para não)");
+                    escolha = int.Parse(Console.ReadLine());
+                    if (escolha == 1)
+                    {
+                        Console.WriteLine("Insira o valor do deposito inicial : ");
+                        carteira = double.Parse(Console.ReadLine());
+                    }
+                    else { carteira = 0; }
+                    ContaGold contaGold = new ContaGold(id, carteira);
+                    break;
+            }
+            while (true)
+            {
+                Console.WriteLine("Insira o número da ação que você deseja realizar");
+                Console.WriteLine("Depósito - 1");
+                Console.WriteLine("Saque - 2");
+                Console.WriteLine("Depósito - 1");
+            }
+        }
+    }
+}
+
+
+
+
+
+
