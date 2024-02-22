@@ -1,80 +1,183 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
+================================
+Program
+================================
 namespace teste
-{
-    public class Program
     {
-        static void Main(string[] args)
+        public class Program
         {
-            int id;
-            int escolha;
-            double carteira;
-            Console.WriteLine("Insira o número referente ao seu plano do banco");
-            Console.WriteLine("Bronze - 1");
-            Console.WriteLine("Silver - 2");
-            Console.WriteLine("Gold - 3");
-            escolha = int.Parse(Console.ReadLine());
-            switch (escolha)
+            static void Main(string[] args)
             {
-                case 1:
-                    Console.WriteLine("Insira o Id da sua conta :");
-                    id = int.Parse(Console.ReadLine());
-                    Console.WriteLine("Você deseja realizar um deposito inicial ? (Digite 1 para sim/ Digite 2 para não)");
-                    escolha = int.Parse(Console.ReadLine());
-                    if (escolha == 1)
-                    {
-                        Console.WriteLine("Insira o valor do deposito inicial : ");
-                        carteira = double.Parse(Console.ReadLine());
-                    }
-                    else { carteira = 0; }
-                    Conta conta = new Conta(id, carteira);
-                    break;
+                int id;
+                int escolha;
+                int escolhaAcao;
+                double carteira;
+                double valor;
+            Conta conta = new ContaGold();
+            ContaSilver contaSilver = new ContaSilver();
+            ContaGold contaGold = new ContaGold();
+
+            Console.WriteLine("Insira o número referente ao seu plano do banco");
+                Console.WriteLine("Bronze - 1");
+                Console.WriteLine("Silver - 2");
+                Console.WriteLine("Gold - 3");
+                escolha = int.Parse(Console.ReadLine());
+                switch (escolha)
+                {
+                    case 1:
+                        Console.WriteLine("Insira o Id da sua conta :");
+                        id = int.Parse(Console.ReadLine());
+                        
+                        conta = new Conta(id);
+                        break;
 
                     case 2:
-                    Console.WriteLine("Insira o Id da sua conta :");
-                    id = int.Parse(Console.ReadLine());
-                    Console.WriteLine("Você deseja realizar um deposito inicial ? (Digite 1 para sim/ Digite 2 para não)");
-                    escolha = int.Parse(Console.ReadLine());
-                    if (escolha == 1)
-                    {
-                        Console.WriteLine("Insira o valor do deposito inicial : ");
-                        carteira = double.Parse(Console.ReadLine());
-                    }
-                    else { carteira = 0; }
-                    ContaSilver contaSilver = new ContaSilver(id, carteira);
-                    break;
+                        Console.WriteLine("Insira o Id da sua conta :");
+                        id = int.Parse(Console.ReadLine());
+                        contaSilver = new ContaSilver(id);
+                        break;
 
                     case 3:
-                    Console.WriteLine("Insira o Id da sua conta :");
-                    id = int.Parse(Console.ReadLine());
-                    Console.WriteLine("Você deseja realizar um deposito inicial ? (Digite 1 para sim/ Digite 2 para não)");
-                    escolha = int.Parse(Console.ReadLine());
-                    if (escolha == 1)
-                    {
-                        Console.WriteLine("Insira o valor do deposito inicial : ");
-                        carteira = double.Parse(Console.ReadLine());
-                    }
-                    else { carteira = 0; }
-                    ContaGold contaGold = new ContaGold(id, carteira);
-                    break;
+                        Console.WriteLine("Insira o Id da sua conta :");
+                        id = int.Parse(Console.ReadLine());
+                        
+                        contaGold = new ContaGold(id);
+                        break;
+                }
+                while (true)
+                {
+                    Console.WriteLine("Insira o número da ação que você deseja realizar");
+                    Console.WriteLine("Depósito - 1");
+                    Console.WriteLine("Saque - 2");
+                    Console.WriteLine("Empréstimo - 3");
+                    Console.WriteLine("Pagar dívidas - 4");
+                    Console.WriteLine("Ver dados da conta - 5");
+                    escolhaAcao = int.Parse(Console.ReadLine());
+                    switch (escolhaAcao)
+                {
+                    case 1:
+                        if(escolha == 1)
+                        {
+                            Console.WriteLine("Insira o valor que voce deseja depositar :");
+                            valor = double.Parse(Console.ReadLine());
+                            conta.Deposito(valor);
+
+
+                        }
+                        else if(escolha == 2)
+                        {
+                            Console.WriteLine("Insira o valor que voce deseja depositar :");
+                            valor = double.Parse(Console.ReadLine());
+                            contaSilver.Deposito(valor);
+                        }
+                        else if (escolha == 3)
+                        {
+                            Console.WriteLine("Insira o valor que voce deseja depositar :");
+                            valor = double.Parse(Console.ReadLine());
+                            contaGold.Deposito(valor);
+                        }
+
+                        break;
+                    case 2:
+                        if (escolha == 1)
+                        {
+                            Console.WriteLine("Insira o valor que voce deseja sacar :");
+                            valor = double.Parse(Console.ReadLine());
+                            conta.Saque(valor);
+                        }
+                        else if (escolha == 2)
+                        {
+                            Console.WriteLine("Insira o valor que voce deseja sacar :");
+                            valor = double.Parse(Console.ReadLine());
+                            contaSilver.Saque(valor);
+                        }
+                        else if (escolha == 3)
+                        {
+                            Console.WriteLine("Insira o valor que voce deseja sacar :");
+                            valor = double.Parse(Console.ReadLine());
+                            contaGold.Saque(valor);
+                        }
+
+                        break;
+
+                    case 3:
+                        if (escolha == 1)
+                        {
+                            Console.WriteLine("Sua Conta não possui nível de acesso suficiente para realizar um empréstimo!");
+                            
+                        }
+                        else if (escolha == 2)
+                        {
+                            
+                            Console.WriteLine("Insira o valor que você deseja pedir de empréstimo :");
+                            valor = double.Parse(Console.ReadLine());
+                            if (valor <= 1000)
+                            {
+                                contaSilver.Emprestimo(valor);
+                            }
+                            else
+                            {
+                                Console.WriteLine("Limite de valor de empréstimo foi ultrapassado!");
+                            }
+                                
+                        }
+                        else if (escolha == 3)
+                        {
+                            Console.WriteLine("Insira o valor que você deseja pedir de empréstimo :");
+                            valor = double.Parse(Console.ReadLine());
+                            if (valor <= 5000)
+                            {
+                                contaGold.Emprestimo(valor);
+                            }
+                            else
+                            {
+                                Console.WriteLine("Limite de valor de empréstimo foi ultrapassado!");
+                            }
+                            
+                        }
+                        break;
+
+                    case 4:
+                        if (escolha == 1)
+                        {
+                            conta.PagarDividas();
+                        }
+                        else if (escolha == 2)
+                        {
+                            contaSilver.PagarDividas();
+                        }
+                        else if (escolha == 3)
+                        {
+                            contaGold.PagarDividas();
+                        }
+                        break;
+
+                        case 5:
+                        if (escolha == 1)
+                        {
+                          Console.WriteLine($"Dados atualizados {conta}");
+                        }
+                        else if (escolha == 2)
+                        {
+                            Console.WriteLine($"Dados atualizados {contaSilver}");
+                        }
+                        else if (escolha == 3)
+                        {
+                            Console.WriteLine($"Dados atualizados {contaGold}");
+                        }
+
+                        break;
+                        
+
+                }
             }
-            while (true)
-            {
-                Console.WriteLine("Insira o número da ação que você deseja realizar");
-                Console.WriteLine("Depósito - 1");
-                Console.WriteLine("Saque - 2");
-                Console.WriteLine("Empréstimo - 1");
             }
         }
     }
-}
 
-
-
-
-
+  
+================================
+Classes
+================================
 using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
@@ -86,10 +189,17 @@ public class Conta
     public double Carteira { get; protected set; }
     public double Divida { get; protected set; }
 
-    public Conta(int id, double carteira)
+
+    public Conta()
+    {
+        
+    }
+
+
+    public Conta(int id)
     {
         this.Id = id;
-        this.Carteira = carteira;
+        this.Carteira = 0;
         this.Divida = 0;
     }
 
@@ -97,12 +207,41 @@ public class Conta
     {
         Carteira += valor;
         Console.WriteLine($"Depósito de R${valor} realizado!");
+        Console.ReadKey();
+        Console.Clear();
     }
 
     public void Saque(double valor)
     {
         Carteira -= valor;
         Console.WriteLine($"Saque de R${valor} realizado!");
+        Console.ReadKey();
+        Console.Clear();
+    }
+
+    public void PagarDividas()
+    {
+        if( Divida <= Carteira )
+        {
+            Carteira -= Divida;
+            Divida = 0;
+            Console.WriteLine("Pagamento de divídas realizado!");
+            Console.ReadKey();
+            Console.Clear();
+        }
+        else if( Divida > Carteira )
+        {
+            Console.WriteLine("Você não possui saldo sufiente para pagar as divídas!");
+            Console.ReadKey();
+            Console.Clear();
+        }
+    }
+
+    public override string ToString()
+    {
+        return "Id da conta: " + Id + ", Saldo na carteira: " + Carteira + ", Valor de divídas pendentes: " + Divida;
+        Console.ReadKey();
+        Console.Clear();
     }
 }
 
@@ -110,11 +249,36 @@ public class ContaSilver : Conta
 {
     public double LimiteEmprestimo;
 
-    public ContaSilver(int id, double carteira)
-        :base(id,carteira)  
+
+    public ContaSilver()
+        
+    {
+       
+    }
+
+
+    public ContaSilver(int id)
+        :base(id)  
     {
         LimiteEmprestimo = 1000;
 
+    }
+
+    public void Deposito(double valor)
+    {
+        Carteira += valor;
+
+        Console.WriteLine($"Depósito de R${valor} realizado!");
+        Console.ReadKey();
+        Console.Clear();
+    }
+
+    public void Saque(double valor)
+    {
+        Carteira -= valor;
+        Console.WriteLine($"Saque de R${valor} realizado!");
+        Console.ReadKey();
+        Console.Clear();
     }
 
     public void Emprestimo(double valor)
@@ -122,23 +286,107 @@ public class ContaSilver : Conta
         Carteira += valor;
         Divida = Divida + valor + (valor * 0.1);
         Console.WriteLine("Empréstimo realizado!");
+        Console.ReadKey();
+        Console.Clear();
+
     }
+
+    public void PagarDividas()
+    {
+        if (Divida <= Carteira)
+        {
+            Carteira -= Divida;
+            Divida = 0;
+            Console.WriteLine("Pagamento de divídas realizado!");
+            Console.ReadKey();
+            Console.Clear();
+        }
+        else if (Divida > Carteira)
+        {
+            Console.WriteLine("Você não possui saldo sufiente para pagar as divídas!");
+            Console.ReadKey();
+            Console.Clear();
+        }
+    }
+
+    public override string ToString()
+    {
+        return "Id da conta: " + Id + ", Saldo na carteira: " + Carteira + ", Valor de divídas pendentes: " + Divida;
+        Console.ReadKey();
+        Console.Clear();
+    }
+
 }
 
-public class ContaGold : ContaSilver
+public class ContaGold : Conta
 {
     public double LimiteEmprestimo;
 
-    public ContaGold(int id, double carteira)
-        : base(id, carteira)
+
+    public ContaGold()
+
+    {
+
+    }
+
+    public ContaGold(int id)
+        : base(id)
     {
         LimiteEmprestimo = 5000;
 
     }
 
+    public void Deposito(double valor)
+    {
+        Carteira += valor;
+        Console.WriteLine($"Depósito de R${valor} realizado!");
+        Console.ReadKey();
+        Console.Clear();
+    }
+
+    public void Saque(double valor)
+    {
+        Carteira -= valor;
+        Console.WriteLine($"Saque de R${valor} realizado!");
+        Console.ReadKey();
+        Console.Clear();
+    }
+
+    public void Emprestimo(double valor)
+    {
+        Carteira += valor;
+        Divida = Divida + valor + (valor * 0.1);
+        Console.WriteLine("Empréstimo realizado!");
+        Console.ReadKey();
+        Console.Clear();
+    }
+
+    public void PagarDividas()
+    {
+        if (Divida <= Carteira)
+        {
+            Carteira -= Divida;
+            Divida = 0;
+            Console.WriteLine("Pagamento de divídas realizado!");
+            Console.ReadKey();
+            Console.Clear();
+        }
+        else if (Divida > Carteira)
+        {
+            Console.WriteLine("Você não possui saldo sufiente para pagar as dívidas!");
+            Console.ReadKey();
+            Console.Clear();
+        }
+    }
+
+    public override string ToString()
+    {
+        return "Id da conta: " + Id + ", Saldo na carteira: " + Carteira + ", Valor de divídas pendentes: " + Divida;
+        Console.ReadKey();
+        Console.Clear();
+    }
+
 }
-
-
 
 
 
