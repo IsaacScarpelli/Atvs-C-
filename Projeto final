@@ -219,24 +219,27 @@ public class Conta
         Console.Clear();
     }
 
-    public void PagarDividas()
+     public void PagarDividas()
     {
-        if( Divida <= Carteira )
+        if (Divida == 0)
         {
-            Carteira -= Divida;
-            Divida = 0;
-            Console.WriteLine("Pagamento de divídas realizado!");
-            Console.ReadKey();
-            Console.Clear();
+            if (Divida <= Carteira)
+            {
+                Carteira -= Divida;
+                Divida = 0;
+                Console.WriteLine("Pagamento de divídas realizado!");
+                Console.ReadKey();
+                Console.Clear();
+            }
+            else if (Divida > Carteira)
+            {
+                Console.WriteLine("Você não possui saldo sufiente para pagar as dívidas!");
+                Console.ReadKey();
+                Console.Clear();
+            }
         }
-        else if( Divida > Carteira )
-        {
-            Console.WriteLine("Você não possui saldo sufiente para pagar as divídas!");
-            Console.ReadKey();
-            Console.Clear();
-        }
+        else { Console.WriteLine("Você não possui dívidas"); }
     }
-
     public override string ToString()
     {
         return "Id da conta: " + Id + ", Saldo na carteira: " + Carteira + ", Valor de divídas pendentes: " + Divida;
@@ -293,20 +296,24 @@ public class ContaSilver : Conta
 
     public void PagarDividas()
     {
-        if (Divida <= Carteira)
+        if (Divida == 0)
         {
-            Carteira -= Divida;
-            Divida = 0;
-            Console.WriteLine("Pagamento de divídas realizado!");
-            Console.ReadKey();
-            Console.Clear();
+            if (Divida <= Carteira)
+            {
+                Carteira -= Divida;
+                Divida = 0;
+                Console.WriteLine("Pagamento de divídas realizado!");
+                Console.ReadKey();
+                Console.Clear();
+            }
+            else if (Divida > Carteira)
+            {
+                Console.WriteLine("Você não possui saldo sufiente para pagar as dívidas!");
+                Console.ReadKey();
+                Console.Clear();
+            }
         }
-        else if (Divida > Carteira)
-        {
-            Console.WriteLine("Você não possui saldo sufiente para pagar as divídas!");
-            Console.ReadKey();
-            Console.Clear();
-        }
+        else { Console.WriteLine("Você não possui dívidas"); }
     }
 
     public override string ToString()
@@ -361,22 +368,26 @@ public class ContaGold : Conta
         Console.Clear();
     }
 
-    public void PagarDividas()
+     public void PagarDividas()
     {
-        if (Divida <= Carteira)
+        if (Divida == 0)
         {
-            Carteira -= Divida;
-            Divida = 0;
-            Console.WriteLine("Pagamento de divídas realizado!");
-            Console.ReadKey();
-            Console.Clear();
+            if (Divida <= Carteira)
+            {
+                Carteira -= Divida;
+                Divida = 0;
+                Console.WriteLine("Pagamento de divídas realizado!");
+                Console.ReadKey();
+                Console.Clear();
+            }
+            else if (Divida > Carteira)
+            {
+                Console.WriteLine("Você não possui saldo sufiente para pagar as dívidas!");
+                Console.ReadKey();
+                Console.Clear();
+            }
         }
-        else if (Divida > Carteira)
-        {
-            Console.WriteLine("Você não possui saldo sufiente para pagar as dívidas!");
-            Console.ReadKey();
-            Console.Clear();
-        }
+        else { Console.WriteLine("Você não possui dívidas"); }
     }
 
     public override string ToString()
